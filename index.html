@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Love's 27th Birthday</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-family: Georgia, serif;
+  color: #fff8e8;
+  background: radial-gradient(circle, #245b43, #09291d 75%);
+}
+.card {
+  width: 100%;
+  max-width: 550px;
+  padding: 35px 22px;
+  text-align: center;
+  border: 2px solid #d9b66e;
+  border-radius: 24px;
+  background: rgba(4, 28, 19, .85);
+  box-shadow: 0 0 35px #0008;
+}
+.ball { font-size: 55px; }
+h1 { color: #f4d58d; font-size: 32px; }
+.nickname {
+  font-size: 22px;
+  color: #f4d58d;
+  margin: 22px 0;
+}
+.note {
+  font-size: 17px;
+  line-height: 1.7;
+  margin: 20px 0 28px;
+}
+.timer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 9px;
+}
+.unit {
+  padding: 15px 5px;
+  border: 1px solid #c9a75e;
+  border-radius: 12px;
+  background: #153d2b;
+}
+.number {
+  display: block;
+  font: bold 30px Arial, sans-serif;
+  color: #f4d58d;
+}
+small { font-size: 11px; }
+.footer {
+  margin-top: 28px;
+  color: #e8cc91;
+  font-size: 14px;
+}
+@media(max-width:380px) {
+  .number { font-size: 23px; }
+  .unit { padding: 12px 3px; }
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="ball">⚽</div>
+  <h1>27th Birthday Kick-Off!</h1>
+  <p class="nickname">For my handsome baby - my LOVE ❤️</p>
+
+  <p class="note">
+    Meri Jaaaannnn! Your special day is almost here.
+    Until then, expect little surprises, lots of love,
+    and your lady cheering for you always.
+    You're always my number one.
+  </p>
+
+  <h2>THE COUNTDOWN IS ON!</h2>
+
+  <div class="timer" id="timer">
+    <div class="unit"><span class="number" id="days">00</span><small>DAYS</small></div>
+    <div class="unit"><span class="number" id="hours">00</span><small>HOURS</small></div>
+    <div class="unit"><span class="number" id="minutes">00</span><small>MINUTES</small></div>
+    <div class="unit"><span class="number" id="seconds">00</span><small>SECONDS</small></div>
+  </div>
+
+  <p class="footer">Every second brings me closer to celebrating YOU! ❤️</p>
+</div>
+
+<script>
+const birthday = new Date("2026-12-04T00:00:00+05:30").getTime();
+
+function updateCountdown() {
+  const difference = birthday - Date.now();
+
+  if (difference <= 0) {
+    document.querySelector(".card").innerHTML =
+      '<div class="ball">🎂⚽❤️</div><h1>HAPPY 27TH BIRTHDAY!</h1><p class="nickname">Meri Jaaaannnn! My handsome baby!</p><p class="note">Today is all about you. I love you, my number one! ❤️</p>';
+    clearInterval(countdownInterval);
+    return;
+  }
+
+  document.getElementById("days").textContent =
+    Math.floor(difference / 86400000);
+  document.getElementById("hours").textContent =
+    Math.floor((difference % 86400000) / 3600000);
+  document.getElementById("minutes").textContent =
+    Math.floor((difference % 3600000) / 60000);
+  document.getElementById("seconds").textContent =
+    Math.floor((difference % 60000) / 1000);
+}
+
+updateCountdown();
+const countdownInterval = setInterval(updateCountdown, 1000);
+</script>
+</body>
+</html>
